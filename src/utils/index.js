@@ -1,0 +1,1 @@
+export {default as getInitialUser} from './getInitialUser'

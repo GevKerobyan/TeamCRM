@@ -1,0 +1,86 @@
+:root {
+  --white10: rgba(255, 255, 255, 0.1);
+  --white20: rgba(255, 255, 255, 0.2);
+  --white40: rgba(255, 255, 255, 0.4);
+  --white60: rgba(255, 255, 255, 0.6);
+  --white70: rgba(255, 255, 255, 0.7);
+  --white80: rgba(255, 255, 255, 0.8);
+  --white90: rgba(255, 255, 255, 0.9);
+  --white-pure: rgba(255, 255, 255, 1);
+
+  --black: #232323;
+  --black03: rgba(35, 35, 35, 0.03);
+  --black05: rgba(35, 35, 35, 0.05);
+  --black10: rgba(35, 35, 35, 0.1);
+  --black15: rgba(35, 35, 35, 0.15);
+  --black30: rgba(35, 35, 35, 0.3);
+  --black40: rgba(35, 35, 35, 0.4);
+  --black50: rgba(35, 35, 35, 0.5);
+  --black60: rgba(35, 35, 35, 0.6);
+  --black70: rgba(35, 35, 35, 0.7);
+  --black-full: rgb(35, 35, 35);
+  --black-pure: rgb(0, 0, 0);
+  --black-dark: rgb(56, 56, 56);
+
+  --grey: #eeeeee;
+  --grey-dark: #8e909b;
+  --grey-dull: #393939;
+  --grey-soft: #f6f6f6;
+  --grey-light: #eeeeee;
+  --grey-pure: #d0d0d0;
+  --grey-new: #c4c4c4;
+  --grey-label: #e6e5e5;
+
+  --mixed-bg: #dbd8cf;
+  --mixed-bg-light: #e9e6dd;
+  --mixed-purple: #3e23ab;
+  --mixed-blue: #4738a5;
+  --mixed-blue-dark: #3b5998;
+
+  --mixed-pink-light: #fcddec;
+  --mixed-pink-bold: #ff8ec8;
+  --mixed-link: #0041e9;
+  --mixed-red: rgba(207, 22, 22, 1);
+  --mixed-red05: rgba(207, 22, 22, 0.05);
+  --mixed-blue-shade: #5865f2;
+  --mixed-green-normal: #e3efe1;
+  --mixed-pink-light: #fff9fb;
+  --mixed-color-negative: #e3dbeb;
+  --mixed-modal-blue: #dae1e9;
+  --mixed-color-neutral: #daeef2;
+
+  --mixed-blue-dark: rgba(4, 12, 24, 1);
+  --mixed-unknown-2: #ff8a71;
+  --mixed-unknown-3: rgb(68, 34, 41);
+  --mixed-unknown-4: rgb(145, 73, 74);
+  --mixed-unknown-5: rgb(255, 112, 109);
+  --mixed-dim-white: rgb(240, 242, 245);
+  --mixed-dim-grey-1: #2f4050;
+  --mixed-dim-grey-2: #293846;
+  --mixed-unknown-6: rgb(68, 34, 41);
+  --mixed-unknown-7: rgb(145, 73, 74);
+  --mixed-unknown-8: rgb(255, 112, 109);
+
+  --red-brick: rgba(235, 75, 77, 0.8);
+  --white-over: rgba(246,246,246, 0.9);
+
+  --color-bg: #040c18;
+  --color-footer: #031b34;
+  --color-blog: #042c54;
+  --color-text: #81afdd;
+  --color-subtext: #ff8a71;
+
+  --heart: rgba(0, 122, 199, 1);
+  --silver: rgba(192, 192, 192, 0.2);
+
+  --submit-button: rgb(174,67,67);
+
+  --navbar-bg: rgb(20, 20, 21);
+  --navbar-link-active: rgb(91, 91, 92);
+
+  --main-bg: rgb(248,248,251);
+
+  --sidebar-bg-1: rgba(40, 40, 43, 1);
+  --eerie-black: rgba(27, 27, 27, 1);
+  --chinese-black: rgba(20, 20, 20, 1);
+}
