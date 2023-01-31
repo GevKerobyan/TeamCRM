@@ -80,7 +80,6 @@ const NavbarMaterial = () => {
           href='/'
           sx={{
             mr: 2,
-            flexGrow: 1,
             fontFamily: 'monospace',
             fontWeight: 700,
             letterSpacing: '.2rem',
@@ -97,6 +96,7 @@ const NavbarMaterial = () => {
        { isAuth && <Box sx={{
           display: 'flex',
           justifyContent: 'flex-end',
+          flexGrow: 1,
           gap: '50px'
         }}>
 
