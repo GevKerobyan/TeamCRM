@@ -1,114 +1,217 @@
-import { useEffect, useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { userSignout } from '../../redux/slices/user/userAsyncs'
+import { userSyncLogout } from '../../redux/slices/user/userSlice';
 
-import { AngleUp, NotificationBell, ProfileHolder, SettingsGear } from '../../assets/Icons'
-import { NavWrapper, NavLogo, NavLogoIMG, NavLink, NavLeft, NavRight, ProfileImageBox } from './styled'
-import { userSyncLogout } from '../../redux/slices/user/userSlice'
-import { extractParams } from '../../helpers'
-import { ProfileDropdown, CompanyDropdown } from '../../components'
+// =====> Material UI
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Box,
+  Tooltip,
+  IconButton,
+  MenuItem,
+  Menu,
+} from '@mui/material';
+
+// =====> ICONS
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import LogoutIcon from '@mui/icons-material/Logout';
+import SettingsIcon from '@mui/icons-material/Settings';
+import NoteAddIcon from '@mui/icons-material/NoteAdd';
+
+// =====> STYLES
+import { NavbarLink, NavDropdownLine, NavLogoIMG, ProfileImageBox } from './styled';
+import { useEffect } from 'react';
 
 const Navbar = () => {
 
-
   const { user, company } = useSelector(state => state)
   const dispatch = useDispatch()
-
   const navigate = useNavigate()
-  const location = useLocation()
 
-  const pathName = extractParams(location)
+  const [anchorElCom, setAnchorElCom] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [anchorElNotes, setAnchorElNotes] = useState(null);
 
   const { isAuth } = user.data
 
-  const [dropDownTitle, setDropdownTitle] = useState('')
-  const [dropdownsOpen, setDropdownsOpen] = useState(false)
+  const handleOpenCompanyMenu = (event) => {
+    setAnchorElCom(event.currentTarget);
+  };
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
 
 
-  const handleDropDown = e => {
-    // e.stopPropagation()
-    console.log('consoling: e.target.title :::', e.target.title )
-    setDropdownsOpen(true)
-    setDropdownTitle(e.target.title)
+  const handleOpenNotesMenu = (event) => {
+    setAnchorElNotes(event.currentTarget);
   }
 
-  useEffect(() => {
-    console.log('consoling: user in NAVBAR :::', user)
-  }, [user])
+  const handleCloseCompanyMenu = () => {
+    setAnchorElCom(null);
+  };
+
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
 
   const handleEditClick = () => {
-    console.log('consoling: user :::', user)
     navigate(`profile/${user.data.id}/edit`)
   }
-  const handleSignout = async () => {
+
+  const handleSignOut = () => {
     dispatch(userSyncLogout())
-    console.log('consoling: hasav :::',)
-    navigate('/')
     // dispatch(userSignout())
-    //   .then(() => navigate('/'))
+    navigate('/')
   }
 
-  const profileDropdownProps = {
-    handleEditClick,
-    handleSignout,
-    dropDownTitle,
-    dropdownsOpen,
-    setDropdownsOpen
+  const handleAddCompanyClick = () => {
+    navigate('/companycreate')
   }
 
   return (
-    <NavWrapper>
-      <NavLogo>
-        <Link to='/'>
+    <AppBar className='navbar' >
+      <Toolbar className='toolbar' >
+        <Typography
+          variant='h1'
+          noWrap
+          component='a'
+          href='/'
+          sx={{
+            mr: 2,
+            fontFamily: 'monospace',
+            fontWeight: 700,
+            letterSpacing: '.2rem',
+            color: 'inherit',
+            textDecoration: 'none',
+            p: 0,
+          }}
+        >
           <NavLogoIMG >
             <h1>CRM</h1 >
           </NavLogoIMG>
-        </Link>
-      </NavLogo>
-      {isAuth
-        ? <>
-          {/* <NavLeft>
-          
-           
-          </NavLeft> */}
-          <NavRight>
-            <NavLink  title='notification' >
-              <NotificationBell />
-            </NavLink>
-            <NavLink>
-              <h2>Projects</h2>
-              <AngleUp />
-            </NavLink>
-            <NavLink title='company' onClick={e => handleDropDown(e)}>
-              {company.data.name ? company.data.name : <h2> Company </h2>}
-              <AngleUp />
-            </NavLink>
-            <NavLink title='profile' onClick={e => handleDropDown(e)}>
-              {user.data.photo
-                ? <ProfileImageBox>
-                  <img src={user.data.photo} />
-                </ProfileImageBox>
-                : <ProfileHolder />
+        </Typography>
+
+        {isAuth && <Box sx={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          flexGrow: 1,
+          gap: '50px'
+        }}>
+
+          {/* Company menu */}
+
+          <Tooltip title='Company details'>
+            <IconButton onClick={handleOpenCompanyMenu} sx={{ p: 0 }}>
+              <NavbarLink>
+                {company.data.name ? company.data.name : <h2> Company </h2>}
+                {anchorElCom ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
+              </NavbarLink>
+            </IconButton>
+          </Tooltip>
+          <Menu
+            sx={{ mt: '45px' }}
+            id='menu-appbar'
+            anchorEl={anchorElCom}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            open={Boolean(anchorElCom)}
+            onClose={handleCloseCompanyMenu}
+          >
+            <MenuItem onClick={handleCloseCompanyMenu}>
+              {company.data.name
+                ? <>
+                  <Typography component={'div'} textAlign='center'>{company.data.name}</Typography>
+                  <Typography component={'div'} textAlign='center'>Members</Typography>
+                </>
+                : <>
+                  <Typography component={'div'} textAlign='center'>
+                    <NavDropdownLine onClick={handleAddCompanyClick}>
+                      <NoteAddIcon />Add company
+                    </NavDropdownLine >
+
+                  </Typography>
+                </>
               }
-              <ProfileDropdown props = {profileDropdownProps}/>
-                {/* <NavDropdown>
-                  <NavDropdownLine onClick={handleEditClick}>
-                    
-                  </NavDropdownLine>
-                  <NavDropdownLine onClick={handleSignout}>
-                    Sign Out
-                  </NavDropdownLine>
-                </NavDropdown> */}
-            </NavLink>
-          </NavRight>
-        </>
-        : null
-      }
-    </NavWrapper>
-  )
-}
+            </MenuItem>
+          </Menu>
 
-export default Navbar
+          {/* Notification menu */}
 
+          <Tooltip title='Notifications'>
+            <IconButton onClick={handleOpenNotesMenu} sx={{ p: 0 }}>
+              <NavbarLink>
+                <NotificationsNoneIcon />
+              </NavbarLink>
+            </IconButton>
+          </Tooltip>
+
+          {/* Profile menu */}
+
+          <Tooltip title='Open Profile'>
+            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <NavbarLink>
+                {user.data.photo
+                  ? <ProfileImageBox>
+                    <img src={user.data.photo} />
+                  </ProfileImageBox>
+                  : <PermIdentityIcon />
+                }
+                {anchorElUser ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
+              </NavbarLink>
+            </IconButton>
+          </Tooltip>
+          <Menu
+            sx={{ mt: '45px' }}
+            id='menu-appbar'
+            anchorEl={anchorElUser}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            open={Boolean(anchorElUser)}
+            onClose={handleCloseUserMenu}
+          >
+            <MenuItem onClick={handleCloseUserMenu}>
+              <Typography component={'div'} textAlign='center' >
+                <NavDropdownLine onClick={handleEditClick} >
+                  <SettingsIcon /> Edit
+                </NavDropdownLine>
+              </Typography>
+            </MenuItem>
+            <MenuItem onClick={handleCloseUserMenu}>
+              <Typography component={'div'}>
+                <NavDropdownLine onClick={handleSignOut}>
+                  <LogoutIcon /> Sign Out
+                </NavDropdownLine>
+              </Typography>
+            </MenuItem>
+          </Menu>
+
+        </Box>}
+      </Toolbar>
+    </AppBar >
+  );
+};
+
+export default Navbar;

@@ -15,7 +15,6 @@ const axInstance = axios.create({
 const setAxios = (axInstance) => {
 	const refresh = tokenRefresh();
 	let accessToken = sessionStorage.getItem('accessToken');
-	console.log('consoling: accessToken =====> ', accessToken);
 	axInstance.interceptors.request.use(
 		(config) => {
 			if (!config.headers['Authorization']) {

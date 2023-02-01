@@ -34,7 +34,6 @@ const SignupForm = () => {
 
   useEffect(() => {
     if (user.data.isAuth) {
-      console.log('consoling: user in HandleSubmit :::', user)
       navigate(`/user/${user.data.id}`);
     }
   }, [user])

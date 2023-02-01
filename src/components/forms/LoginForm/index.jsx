@@ -26,7 +26,6 @@ const LoginForm = () => {
   }, [loginMail, loginPass, user])
 
   useEffect(() => {
-    console.log('consoling: user in login :::', user )
       if (user.data?.isAuth) {
         navigate(`/user/${user.data.id}`);
       }

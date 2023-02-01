@@ -34,7 +34,6 @@ const userSlice = createSlice({
 		userSyncLogout: (state) => {
 			localStorage.clear();
 			sessionStorage.clear();
-			console.log('consoling: userSyncLogout =====> ', userState);
 			return userState;
 		},
 	},
@@ -59,12 +58,11 @@ const userSlice = createSlice({
 
 		// =====> Signup
 		builder.addCase(userSignup.pending, (state) => {
-			console.log('consoling: Signupn Pending =====> ');
 			state.isLoading = true;
 		});
 		builder.addCase(userSignup.fulfilled, (state, action) => {
 			console.log(
-				'consoling: action.payload userSignup.FulFilled =====> ',
+				'consoling: Signup.FulFilled =====> ',
 				action.payload
 			);
 			state.isLoading = false;

@@ -22,7 +22,6 @@ const companySlice = createSlice({
 	initialState: companyState,
 	reducers: {
 		getCompany: (state, action) => {
-			console.log('consoling: action.payload in reducer =====> ', action.payload )
 			state.data = action.payload
 		}
 	},

@@ -11,7 +11,6 @@ const Home = () => {
   const navigate = useNavigate()
 
   useEffect(()=> {
-    console.log('consoling: user.data.isAuth :::', user.data.isAuth )
     if(user.data.isAuth) {
       navigate(`/user/${user.data.id}`)
     }

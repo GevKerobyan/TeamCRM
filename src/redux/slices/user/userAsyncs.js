@@ -6,7 +6,6 @@ import { Navigate } from 'react-router';
 export const userLogin = createAsyncThunk(
 	'user/userLogin',
 	async ({ user, rejectWithValue }) => {
-		console.log('consoling: user before try =====> ', user);
 		try {
 			const res = await axiosInstance.post(`/auth/login`, user);
 			console.log('consoling: res in Login =====> ', res);
@@ -85,12 +84,11 @@ export const userEdit = createAsyncThunk(
 export const userGetInitial = createAsyncThunk(
 	'user/userGetInitial',
 	async (_, { rejectWithValue }) => {
-		console.log('consoling: GetInitial =====> ');
 		try {
-			const res = await axiosInstance.get('/user').data;
-			console.log('consoling: user in getInitial =====> ', res);
+			const res = await axiosInstance.get('/user');
+			console.log('consoling: res in getInitial =====> ', res.data.data);
 			return {
-				...res,
+				...res.data.data,
 				isAuth: true,
 				colorCode: colorCode(),
 			};

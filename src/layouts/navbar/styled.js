@@ -1,25 +1,5 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const NavWrapper = styled.nav`
-	position: fixed;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	width: 100%;
-	height: 75px;
-	padding: 0 100px;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	background: radial-gradient(
-		circle,
-		rgba(36, 36, 36, 1) 0%,
-		rgba(8, 9, 22, 1) 100%
-	);
-	color: var(--mixed-dim-white);
-	z-index: 1000;
-`;
 
 export const NavLogo = styled.div`
 	height: 100%;
@@ -51,29 +31,9 @@ export const NavLogoIMG = styled.div`
 	}
 `;
 
-export const NavLeft = styled.div`
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-	padding: 0 20px;
-	gap: 20px;
-	flex: 4;
-`;
-
-export const NavRight = styled.div`
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-	padding: 0 20px;
-	gap: 20px;
-	flex: 6;
-`;
-
-export const NavLink = styled.div`
+export const NavbarLink = styled.div`
 	position: relative;
-	height: 100%;
+	height: 50px;
 	background: transparent;
 	width: auto;
 	min-width: 75px;
@@ -81,62 +41,45 @@ export const NavLink = styled.div`
 	align-items: center;
 	justify-content: center;
 	padding: 0 5px;
-	gap: 8px;
 	cursor: pointer;
+	
 	transition: all ease-in-out 150ms;
 	/* transition: all 1s cubic-bezier(0.92, 0.08999999999999997, 1, 0.48) 150ms; */
 	z-index: 1;
+	font-size: 15px;
 
-	>svg {
+	svg {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
 
 	:hover {
-		filter: brightness(200%);
-		background: rgba(240, 242, 245, 0.1);
-		/* background-blend-mode: luminosity; */
+		filter: brightness(150%);
 	}
-
 `;
 
 export const ProfileImageBox = styled.div`
-	width: 25px;
-	height: 25px;
+	width: 30px;
+	height: 30px;
 	border-radius:  5px;
 	overflow: hidden;
 
 	img {
-		width: 25px;
-		height: 25px;
+		width: 30px;
+		height: 30px;
 	}
 `;
 
-// export const NavDropdown = styled.div`
-// 	position: absolute;
-// 	min-width: 150px;
-// 	top: 80%;
-// 	padding: 25px 5px;
-// 	background-color: rgba(8, 9, 22, 0.9);
-// 	display: flex;
-// 	flex-direction: column;
-// 	align-items: flex-start;
-// 	justify-content: center;
-// 	gap: 10px;
-// 	color: var(--mixed-dim-white);
-// `;
+export const NavDropdownLine = styled.div`
+	width: 100%;
+	border-bottom: 1px solid #fff;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
 
-// export const NavDropdownLine = styled.div`
-// 	width: 100%;
-// 	padding: 10px 20px;
-// 	border-bottom: 1px solid #fff;
-// 	display: flex;
-// 	justify-content: space-between;
-// 	align-items: center;
-// 	/* gap: 10px; */
-
-// 	:hover {
-// 		background-color: rgba(8, 9, 22, 1);
-// 	}
-// `;
+	:hover {
+		filter: brightness(200%);
+	}
+`;

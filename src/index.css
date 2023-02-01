@@ -173,3 +173,14 @@ Link:active {
   outline: none;
   color: inherit;
 }
+
+/* =====> MUI components */
+
+.navbar {
+  background:  radial-gradient(circle,rgba(50, 50, 50, 1) 0%,rgba(8, 9, 22, 1) 100%);
+  padding: 0 84px;
+}
+
+.navbar  * {
+	color: var(--mixed-dim-white);
+}

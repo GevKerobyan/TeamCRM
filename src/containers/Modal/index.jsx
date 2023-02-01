@@ -13,9 +13,6 @@ const Modal = ({ component, closeModal, isEditModalOpen }) => {
 		wrapperElement.remove()
 	}
 
-	useEffect(() => {
-		console.log('consoling: isEditModalOpen in MODAL :::', component)
-	}, [isEditModalOpen])
 
 	if (!isEditModalOpen) return null
 
