@@ -1,10 +1,7 @@
-import * as React from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import CardContent from '@mui/material/CardContent';
 
 const MembersCard = ({ member, click }) => {
   return (
@@ -19,11 +16,11 @@ const MembersCard = ({ member, click }) => {
         }}
         
         image={member.photo ? member.photo : null}
-        title="green iguana"
+        title='green iguana'
         onClick={() => click(member.id)}
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant='body2' color='text.secondary'>
           {member.firstname}
         </Typography>
       </CardContent>

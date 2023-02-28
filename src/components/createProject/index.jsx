@@ -1,11 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { CreateProjectForm, LogoIMGPreviewBox } from './styled';
-import { Typography, Button, TextField, TextareaAutosize } from '@mui/material'
+import { Typography, Button, TextField } from '@mui/material'
 import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { companyCreate } from '../../redux/slices/company/companyAsyncs';
-import { useNavigate } from 'react-router';
 import { projectCreate } from '../../redux/slices/project/projectAsyncs';
 
 
@@ -35,11 +33,8 @@ const styles = {
 
 const CreateProject = ({setOpen}) => {
 
-  const { user, company } = useSelector(state => state)
-  const userId = user.data.id
-  const companyId = company.data.id
+  const { company } = useSelector(state => state)
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   const [projectName, setProjectName] = useState('')
   const [projectPhone, setProjectPhone] = useState('')
@@ -60,10 +55,8 @@ const CreateProject = ({setOpen}) => {
     project.append('description', projectDescription)
 
     dispatch(projectCreate({ project, companyId  }))
-      .then(res => {
-        console.log('consoling: res in index :::', res )
+      .then(() => {
         setOpen(false)
-        // navigate(`/company/${res.payload.company._id}`)
       })
   }
 

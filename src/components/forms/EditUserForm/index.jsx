@@ -1,10 +1,12 @@
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
+import { useDispatch, useSelector } from 'react-redux'
+
 import { DeleteIMGButton } from '../../../assets/Icons'
 import { userEdit } from '../../../redux/slices/user/userAsyncs'
-import { DeleteButtonContainer, Form, FormTitle, FormWrapper, InputWrapper, SubmitBTN } from '../styled'
+
 import { EditBG } from './styled'
+import { DeleteButtonContainer, Form, FormTitle, FormWrapper, InputWrapper, SubmitBTN } from '../styled'
 
 
 const EditUserForm = ({ userStates, inputRef, setModalOpen }) => {
@@ -44,7 +46,6 @@ const EditUserForm = ({ userStates, inputRef, setModalOpen }) => {
         setModalOpen(false)
         navigate(`/user/${user.data.id}`)})
   }
-
 
   return (
     <FormWrapper>

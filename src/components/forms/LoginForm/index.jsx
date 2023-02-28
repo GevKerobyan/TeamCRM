@@ -1,10 +1,12 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
+
 import { userLogin } from '../../../redux/slices/user/userAsyncs';
-import { Form, FormTitle, FormWrapper, InputWrapper, LinkTo, SubmitBTN } from '../styled';
+
 import {  LoginBG } from './styled'
+import { Form, FormTitle, FormWrapper, InputWrapper, LinkTo, SubmitBTN } from '../styled';
 
 const LoginForm = () => {
 
@@ -46,7 +48,6 @@ const LoginForm = () => {
         </InputWrapper>
         <SubmitBTN >Login</SubmitBTN>
         <LinkTo>Need an account ? <span><Link to='/signup'>Sign up</Link></span></LinkTo>
-
       </Form>
     </FormWrapper>
   )

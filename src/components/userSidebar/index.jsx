@@ -18,16 +18,17 @@ const UserSidebar = ({ userStates, inputRef }) => {
     <SidebarWrapper >
       <SideImgPreview onMouseEnter={() => setDeleteBtn(true)} onMouseLeave={() => setDeleteBtn(false)}>
         {deleteBtn && photoPreview && <DeleteButtonContainer
-         onClick={() => {
-          inputRef.current.value = ''
-          setPhotoPreview(''); 
-          setPhoto('')
-        }}><DeleteIMGButton /></DeleteButtonContainer>}
-        {photoPreview ? <img src={photoPreview} alt="avatar" /> : <ProfileHolder color='rgba(57, 42, 72, 1)' size='100' />}
+          onClick={() => {
+            inputRef.current.value = ''
+            setPhotoPreview('');
+            setPhoto('')
+          }}><DeleteIMGButton />
+        </DeleteButtonContainer>}
+        {photoPreview ? <img src={photoPreview} alt='avatar' /> : <ProfileHolder color='rgba(57, 42, 72, 1)' size='100' />}
       </SideImgPreview>
       <SideInfo>
         <SideInfoLine> Name: {fName} {lName}</SideInfoLine>
-        <SideInfoLine>Mail: {mail}</SideInfoLine>
+        <SideInfoLine> Mail: {mail}</SideInfoLine>
       </SideInfo>
     </SidebarWrapper>
   )

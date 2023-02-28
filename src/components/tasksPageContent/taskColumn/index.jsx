@@ -1,17 +1,21 @@
-import { ColumnTitle, TaskColumnBox, TaskColumnFooter, TaskAddition, TaskAdditionInput, TaskAdditionButtons } from "./styled"
-import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined';
-import TaskCard from "./taskCard"
-import { useState } from "react";
-import { Button, Input } from "@mui/material";
+import { useState } from 'react';
+import { useParams } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { taskCreate } from '../../../redux/slices/project/projectAsyncs';
+
+import TaskCard from './taskCard'
+
+import { ColumnTitle, TaskColumnBox, TaskColumnFooter, TaskAddition, TaskAdditionInput } from './styled'
+
+import { Button, Input } from '@mui/material';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined';
 import { styled } from '@mui/material/styles';
-import { useDispatch, useSelector } from "react-redux";
-import { taskCreate } from "../../../redux/slices/project/projectAsyncs";
-import { useParams } from "react-router";
 
-const TaskColumn = ({ title, tasks }) => {
-  const { user, company, project } = useSelector(state => state)
+const TaskColumn = ({ title }) => {
+  const { company } = useSelector(state => state)
   const { projectId } = useParams()
   const dispatch = useDispatch()
   const companyId = company.data.id
@@ -19,7 +23,6 @@ const TaskColumn = ({ title, tasks }) => {
   const [addTaskOpen, setAddTaskOpen] = useState(false)
   
   const [taskTitle, setTaskTitle] = useState('')
-  const [taskStatus, setTaskStatus] = useState('')
   
   const ColorButton = styled(Button)(() => ({
     backgroundColor: 'var(--add-btn)',
@@ -30,12 +33,9 @@ const TaskColumn = ({ title, tasks }) => {
   }));
 
   const handleNewTaskClick = (e, title) => {
-    console.log('taskTitle =====> ', taskTitle)
     e.preventDefault()
-    console.log('title =====>' , title)
     dispatch(taskCreate({ task: taskTitle, projectId, companyId }))
   }
-  // project.data.tasks.forEach()
   return (
 
     <TaskColumnBox>

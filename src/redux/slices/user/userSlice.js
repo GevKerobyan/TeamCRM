@@ -45,7 +45,6 @@ const userSlice = createSlice({
 			state.isLoading = true;
 		});
 		builder.addCase(userLogin.fulfilled, (state, action) => {
-			console.log('consoling: Login FulFilled =====> ', action.payload);
 			state.isLoading = false;
 			state.data = action.payload;
 			state.error = '';
@@ -61,7 +60,6 @@ const userSlice = createSlice({
 			state.isLoading = true;
 		});
 		builder.addCase(userSignup.fulfilled, (state, action) => {
-			console.log('consoling: Signup.FulFilled =====> ', action.payload);
 			state.isLoading = false;
 			state.data = action.payload;
 			state.error = '';
@@ -78,7 +76,6 @@ const userSlice = createSlice({
 			state.isLoading = true;
 		});
 		builder.addCase(userGetInitial.fulfilled, (state, action) => {
-			console.log('consoling: GetInitial.FulFilled =====> ', action.payload);
 
 			state.isLoading = false;
 			state.data = action.payload;
@@ -110,7 +107,6 @@ const userSlice = createSlice({
 			state.isLoading = true;
 		});
 		builder.addCase(userEdit.fulfilled, (state, action) => {
-			console.log('consoling: Edit.FulFilled =====> ', action.payload);
 			state.isLoading = false;
 			state.data = action.payload;
 			state.error = '';

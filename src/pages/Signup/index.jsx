@@ -1,5 +1,5 @@
-import {SignupForm} from "../../components/forms"
-import { PageWrapper } from "../../layouts"
+import {SignupForm} from '../../components/forms'
+import { PageWrapper } from '../../layouts'
 
 const Signup = () => {
   return (

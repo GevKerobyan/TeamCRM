@@ -34,14 +34,12 @@ const companySlice = createSlice({
 		});
 
 		builder.addCase(companyCreate.fulfilled, (state, action) => {
-			console.log('consoling: companyCreate.fulfilled =====> ', action.payload);
 			state.isLoading = false;
 			state.data = action.payload;
 			state.error = '';
 		});
 
 		builder.addCase(companyCreate.rejected, (state, action) => {
-			console.log('consoling:  companyCreate.rejected =====> ', action);
 			state.isLoading = false;
 		});
 
@@ -55,12 +53,10 @@ const companySlice = createSlice({
 			state.isLoading = false;
 			state.data = action.payload;
 			state.error = '';
-			console.log('consoling: companyGet.fulfilled =====> ', action.payload);
 		});
 
 		builder.addCase(companyGet.rejected, (state, action) => {
 			state.isLoading = false;
-			console.log('consoling:  companyGet.rejected =====> ', action);
 		});
 	},
 });

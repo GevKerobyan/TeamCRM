@@ -1,7 +1,9 @@
-import React from 'react'
+// =====> HOOKS
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+
+// =====> COMPONENTS
 import { PageWrapper } from '../../layouts'
 import { HomeBG, HomePageContainer, LinkContainer } from './styled'
 

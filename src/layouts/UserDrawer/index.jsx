@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { styled } from '@mui/material/styles';
 import { DrawerProjectsContainer, DrawerSingleProjectBox, DrawerSingleProjectLogo, DrawerDingleProjectTitle, AddProjectBox } from './styled'
@@ -108,15 +108,6 @@ const UserDrawer = ({isOpen,  setIsOpen,  setChatUsers}) => {
 		backgroundColor: theme.palette.background.paper,
 	}));
 
-	// useEffect(()=> {
-	// 	if(open) {
-	// 		const autoClose = setTimeout(()=> {
-	// 			setOpen(false)
-	// 		}, 1000*10)
-	// 		return () => clearTimeout(autoClose);
-	// 	}
-	// },[open])
-
 	const handleDrawerOpen = () => {
 		setOpen(true);
 	};
@@ -146,8 +137,6 @@ const UserDrawer = ({isOpen,  setIsOpen,  setChatUsers}) => {
 		e.preventDefault();
 		setChatUsers(contact)
 		setIsOpen(true)
-		console.log(isOpen,  setIsOpen,  setChatUsers)
-		console.log('contact =====> ', contact)
 	}
 
 	return (

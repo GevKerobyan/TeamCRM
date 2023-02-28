@@ -33,7 +33,6 @@ import { NavbarLink, NavDropdownLine, NavLogoIMG, ProfileImageBox, SearchInput, 
 
 // =====> COMPONENTS
 import { UsersGroup, CreateCompany, UserEdit } from '../../components';
-import { useSearchParams } from 'react-router-dom';
 
 const Navbar = () => {
 
@@ -49,7 +48,6 @@ const Navbar = () => {
 
   const [modalOpen, setModalOpen] = useState(false);
 
-  const [searchParams, setSearchParams] = useSearchParams('')
   const [searchText, setSearchText] = useState('')
 
 

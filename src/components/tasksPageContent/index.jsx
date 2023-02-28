@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
+
 import TaskColumn from './taskColumn'
-import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined';
 
 import { TaskListWrapper, AddColumnWrapper, AddColumn, ColumnAddition, ColumnAdditionInput } from './styled'
-import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
-import { Button, ButtonGroup, Input } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { useSelector } from 'react-redux';
+import { Button, ButtonGroup, Input } from '@mui/material';
+import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined';
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 const TasksPageContent = () => {
   const { project } = useSelector(state => state)
   const [columns, setColumns] = useState([])
   const [columnTitle, setColumnTitle] = useState('')
   const [addColumnOpen, setAddColumnOpen] = useState(false)
-
 
   useEffect(() => {
     project.data.tasks?.map(item => {
@@ -69,9 +69,7 @@ const TasksPageContent = () => {
             </ButtonGroup>
             </form>
           </ColumnAddition>
-
         }
-
       </TaskListWrapper>
     </>
   )

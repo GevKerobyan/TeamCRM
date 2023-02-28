@@ -53,7 +53,6 @@ export const DeleteButtonContainer = styled.div`
 
 export const SideInfo = styled.div`
 	width: 100%;
-	/* background-color: yellow; */
 	height: 300px;
 	display: flex;
 	flex-direction: column;
@@ -66,7 +65,6 @@ export const SideInfoLine = styled.div`
 	width: 100%;
 	height: 35px;
 	padding: 7px 5px;
-	/* background-color: red; */
 	border-bottom: 1px solid white;
 	display: flex;
 	align-items: end;

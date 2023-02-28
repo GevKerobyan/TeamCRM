@@ -1,6 +1,6 @@
 export { default as UserEdit } from './userEdit';
-export { default as UserSidebar } from './userSidebar';
 export { default as UsersGroup } from './navbarUsers';
+export { default as UserSidebar } from './userSidebar';
 export { default as CreateCompany } from './createCompany';
 export { default as MemberActions } from './memberActionMenu';
 export { default as TaskColumn } from './tasksPageContent/taskColumn'

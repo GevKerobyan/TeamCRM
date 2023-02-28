@@ -1,7 +1,6 @@
-import React, { useState, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { useSelector } from 'react-redux'
 
-// import {UserSidebar} from '../index'
 import { PageWrapper } from '../../layouts'
 import {EditUserForm} from '../forms'
 
@@ -15,8 +14,6 @@ const UserEdit = ({setModalOpen}) => {
   const [photo, setPhoto] = useState(user.data.photo)
 
   const [photoPreview, setPhotoPreview] = useState(user.data.photo)
-
-  const [imagePreview, setImagePreview] = useState(user.data.photo)
 
   const inputRef =useRef('')
 
@@ -37,7 +34,6 @@ const UserEdit = ({setModalOpen}) => {
 
   return (
     <PageWrapper>
-      {/* <UserSidebar userStates={userStates} inputRef={inputRef}/> */}
       <EditUserForm userStates={userStates} inputRef={inputRef} setModalOpen={setModalOpen}/>
     </PageWrapper>
   )

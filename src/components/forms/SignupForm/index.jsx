@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+
 import { userSignup } from '../../../redux/slices/user/userAsyncs'
-import { Form, FormTitle, FormWrapper, InputWrapper, SubmitBTN, LinkTo } from '../styled'
+
 import { SignupBG } from './styled'
+import { Form, FormTitle, FormWrapper, InputWrapper, SubmitBTN, LinkTo } from '../styled'
 
 const SignupForm = () => {
+
   const { user } = useSelector(state => state)
   const dispatch = useDispatch()
 

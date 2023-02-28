@@ -13,10 +13,8 @@ export const companyCreate = createAsyncThunk(
 					Authorization: `Bearer ${accessToken}`,
 				},
 			});
-			console.log('consoling: res in CreateCompany =====> ', res);
 			return res.data;
 		} catch (error) {
-			console.log('consoling: error in CreateCompany =====> ', error);
 			return rejectWithValue(error.error);
 		}
 	}
@@ -27,10 +25,8 @@ export const companyGet = createAsyncThunk(
 	async ({ companyId, rejectWithValue }) => {
 		try {
 			const res = await axiosInstance.get(`/companies/${companyId}`);
-			console.log('consoling: res in GetCompany =====> ', res);
 			return res.data;
 		} catch (error) {
-			console.log('consoling: error in GetCompany =====> ', error);
 			return rejectWithValue(error.error);
 		}
 	}

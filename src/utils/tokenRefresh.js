@@ -17,10 +17,7 @@ const tokenRefresh = () => {
 						},
 					}
 				);
-				console.log('consoling: response in refresh  =====> ', response);
-				
 				sessionStorage.setItem('accessToken', response.data.accessToken);
-					
 				return response.data.accessToken;
 			} 
 

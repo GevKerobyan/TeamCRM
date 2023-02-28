@@ -12,7 +12,6 @@ export const userLogin = createAsyncThunk(
 		try {
 			const res = await axios.post(`${BASE_URL}/auth/login`, user);
 
-			console.log('consoling: res in userLogin =====> ', res.data);
 
 			sessionStorage.setItem('accessToken', res.data.accessToken);
 			localStorage.setItem(
@@ -28,7 +27,6 @@ export const userLogin = createAsyncThunk(
 				isAuth: true,
 			};
 		} catch (error) {
-			console.log('consoling: error in userLogin =====> ', error);
 			return rejectWithValue(error);
 		}
 	}
@@ -40,7 +38,6 @@ export const userSignup = createAsyncThunk(
 		const BASE_URL = process.env.REACT_APP_BASE_URL;
 		try {
 			const res = await axios.post(`${BASE_URL}/auth/register`, user);
-			console.log('consoling: res in Signup =====> ', res.data);
 			sessionStorage.setItem('accessToken', res.data.accessToken);
 			localStorage.setItem(
 				'auth',
@@ -55,7 +52,6 @@ export const userSignup = createAsyncThunk(
 				isAuth: true,
 			};
 		} catch (error) {
-			console.log('consoling: error in Signup =====> ', error);
 			return rejectWithValue(error);
 		}
 	}
@@ -73,14 +69,12 @@ export const userEdit = createAsyncThunk(
 					Authorization: `Bearer ${accessToken}`,
 				},
 			});
-			console.log('consoling: res in Edit =====> ', res);
 			return {
 				...res.data.data,
 				colorCode: colorCode(),
 				isAuth: true,
 			};
 		} catch (error) {
-			console.log('consoling: error in Edit =====> ', error);
 			return rejectWithValue(error);
 		}
 	}
@@ -91,14 +85,12 @@ export const userGetInitial = createAsyncThunk(
 	async (_, { rejectWithValue }) => {
 		try {
 			const res = await axiosInstance.get('/user');
-			console.log('consoling: res in getInitial =====> ', res);
 			return {
 				...res.data,
 				isAuth: true,
 				colorCode: colorCode(),
 			};
 		} catch (error) {
-			console.log('consoling: error in getInitial =====> ', error);
 			return rejectWithValue(error);
 		}
 	}
@@ -108,15 +100,12 @@ export const userSignout = createAsyncThunk(
 	'user/signout',
 	async ({ refreshToken, rejectWithValue }) => {
 		try {
-			console.log('consoling: refreshtoken in userSignout =====> ', refreshToken);
 			const res = await axiosInstance.post(`/auth/logout`, { refreshToken });
-			console.log('consoling: res signout =====> ', res);
 			localStorage.clear();
 			sessionStorage.clear();
 			<Navigate to='/' />;
 			return;
 		} catch (error) {
-			console.log('consoling: error in userSignout =====> ', error);
 			return rejectWithValue(error.error);
 		}
 	}

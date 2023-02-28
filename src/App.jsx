@@ -1,24 +1,29 @@
+// =====> HOOKS
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
+
+// =====> FUNCTIONS
 import { companyGet } from './redux/slices/company/companyAsyncs';
 import { userGetInitial } from './redux/slices/user/userAsyncs';
 import PrivateRoute from './PrivateRoute';
 
-import { Navbar } from './layouts';
+// =====> COMPONENTS
 import { TestDrawer, Company, Home, Login, Signup, User, MembersList, SearchResults, Project } from './pages';
-import { projectGet } from './redux/slices/project/projectAsyncs';
 import { ChatMiniBox } from './components';
+import { Navbar } from './layouts';
+
 
 function App() {
-	const { user, company, project } = useSelector(state => state)
-	const dispatch = useDispatch()
-	const refreshToken = localStorage.getItem('auth')
 
+	const { user } = useSelector(state => state)
+	const dispatch = useDispatch()
+	
 	const [chatOpen, setChatOpen] = useState(false)
 	const [chatUsers, setChatUsers] = useState([])
-
+	
+	const refreshToken = localStorage.getItem('auth')
+	
 	useEffect(() => {
 		if (refreshToken) {
 			dispatch(userGetInitial())
@@ -29,19 +34,10 @@ function App() {
 		if (user.data.company?._id) {
 			const companyId = user.data.company._id
 			dispatch(companyGet({ companyId }))
-			const projectId = user.data?.projects
 			dispatch(companyGet({ companyId }))
 		}
 	}, [user])
 
-	useEffect(() => {
-		console.log('consoling: user in APP  :::', user)
-		console.log('consoling: company in APP  :::', company)
-		console.log('consoling: project in APP :::', project)
-	}, [user, company, project])
-
-
-	
 	return (
 		<Router>
 			<div className='app'>

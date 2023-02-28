@@ -38,14 +38,12 @@ const projectSlice = createSlice({
 		});
 
 		builder.addCase(projectCreate.fulfilled, (state, action) => {
-			console.log('action =====> ', action);
 			state.isLoading = false;
 			state.data = action.payload;
 			state.error = '';
 		});
 
 		builder.addCase(projectCreate.rejected, (state, action) => {
-			console.log('action rejected=====> ', action);
 			state.isLoading = false;
 			state.error = action.payload;
 		});
@@ -68,7 +66,6 @@ const projectSlice = createSlice({
 			state.isLoading = true;
 		});
 		builder.addCase(taskCreate.fulfilled, (state, action) => {
-			console.log('consoling: action.payload` =====> ', action.payload )
 		});
 		builder.addCase(taskCreate.rejected, (state, action) => {
 			state.isLoading = false;

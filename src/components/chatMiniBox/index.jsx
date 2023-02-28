@@ -1,13 +1,13 @@
-import { Avatar, Divider, Input, ListItem, ListItemAvatar, ListItemText, Slide, TextareaAutosize, Typography } from "@mui/material"
-import ImageIcon from '@mui/icons-material/Image';
+import {  useState } from 'react';
+
 import CloseIcon from '@mui/icons-material/Close';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import AttachmentOutlinedIcon from '@mui/icons-material/AttachmentOutlined';
 import EmojiEmotionsOutlinedIcon from '@mui/icons-material/EmojiEmotionsOutlined';
 
+import { Avatar, Divider, Input, ListItem, ListItemAvatar, ListItemText, Slide, Typography } from '@mui/material'
 
-import { ChatMiniBoxWrapper, ChatMiniBoxContent, SingleMessage, InputButtonsRow } from "./styled"
-import { useEffect, useState } from "react";
+import { ChatMiniBoxWrapper, ChatMiniBoxContent, SingleMessage, InputButtonsRow } from './styled'
 
 const ChatMiniBox = ({ isOpen, setIsOpen, chatUsers }) => {
 
@@ -24,8 +24,8 @@ const ChatMiniBox = ({ isOpen, setIsOpen, chatUsers }) => {
           <ListItemAvatar>
             <Avatar src={chatUsers.photo} sx={{ width: 25, height: 25 }} />
           </ListItemAvatar>
-          <ListItemText primary={chatUsers.firstname} secondary="Jan 9, 2014" />
-          <CloseIcon fontSize="small" sx={{ position: 'absolute', top: '5px', right: '5px' }} onClick={() => setIsOpen(false)} />
+          <ListItemText primary={chatUsers.firstname} secondary='Jan 9, 2014' />
+          <CloseIcon fontSize='small' sx={{ position: 'absolute', top: '5px', right: '5px' }} onClick={() => setIsOpen(false)} />
         </ListItem>
         <Divider />
         <ChatMiniBoxContent>

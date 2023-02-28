@@ -1,12 +1,14 @@
 import { useState } from 'react'
-import { CreateCompanyForm, LogoIMGPreviewBox } from './styled';
+import { useNavigate } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { companyCreate } from '../../redux/slices/company/companyAsyncs';
+
 import { Typography, Button, TextField } from '@mui/material'
 import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { companyCreate } from '../../redux/slices/company/companyAsyncs';
-import { useNavigate } from 'react-router';
 
+import { CreateCompanyForm, LogoIMGPreviewBox } from './styled';
 
 const styles = {
    field: {
@@ -50,9 +52,7 @@ const CreateCompany = () => {
       company.append('description', 'barev')
 
       dispatch(companyCreate({ company }))
-         .then(res=>{
-            console.log('res in company NAVIGATE=====> ', res)
-            navigate(`/company/${res.payload.company._id}`)})
+         .then(res => navigate(`/company/${res.payload.company._id}`))
    }
 
    const imgFilehandler = (e) => {
@@ -63,11 +63,11 @@ const CreateCompany = () => {
    }
 
    return (
-      <CreateCompanyForm autoComplete="off" onSubmit={handleSubmit}>
+      <CreateCompanyForm autoComplete='off' onSubmit={handleSubmit}>
          <Typography
-            variant="h6"
-            color="textSecondary"
-            component="h2"
+            variant='h6'
+            color='textSecondary'
+            component='h2'
             align='left'
             width='100%'
          >
@@ -78,9 +78,9 @@ const CreateCompany = () => {
 
          <TextField sx={styles.field}
             onChange={(e) => setName(e.target.value)}
-            label="Company name"
-            variant="outlined"
-            color="secondary"
+            label='Company name'
+            variant='outlined'
+            color='secondary'
             fullWidth
             required
          />
@@ -89,9 +89,9 @@ const CreateCompany = () => {
 
          <TextField sx={styles.field}
             onChange={(e) => setAddress(e.target.value)}
-            label="Address"
-            variant="outlined"
-            color="secondary"
+            label='Address'
+            variant='outlined'
+            color='secondary'
             fullWidth
             required
          />
@@ -100,9 +100,9 @@ const CreateCompany = () => {
 
          <TextField sx={styles.field}
             onChange={(e) => setPage(e.target.value)}
-            label="Webpage"
-            variant="outlined"
-            color="secondary"
+            label='Webpage'
+            variant='outlined'
+            color='secondary'
             fullWidth
             required
          />
@@ -111,9 +111,9 @@ const CreateCompany = () => {
 
          <TextField sx={styles.field}
             onChange={(e) => setPhone(e.target.value)}
-            label="Phone number"
-            variant="outlined"
-            color="secondary"
+            label='Phone number'
+            variant='outlined'
+            color='secondary'
             fullWidth
             type='number'
             required
@@ -124,23 +124,26 @@ const CreateCompany = () => {
          <TextField
             sx={styles.fieldIMG}
             onChange={imgFilehandler}
-            variant="outlined"
-            color="secondary"
+            variant='outlined'
+            color='secondary'
             fullWidth
             type='file'
          >
          </TextField>
+
          <LogoIMGPreviewBox>
             {companyLogo ? <img src={logoPreview} /> : null}
          </LogoIMGPreviewBox>
+
          <Button
             sx={styles.button}
-            type="submit"
-            color="secondary"
-            variant="contained"
+            type='submit'
+            color='secondary'
+            variant='contained'
             endIcon={<ChevronRightOutlinedIcon />}>
             Submit
          </Button>
+
       </CreateCompanyForm>
    )
 }

@@ -46,7 +46,6 @@ const style = {
   transform: 'translate(-50%, -50%)',
   minWidth: 400,
   bgcolor: 'background.paper',
-  // border: '2px solid #000',
   boxShadow: 24,
   overflow: 'hidden',
   p: 4,
@@ -56,8 +55,8 @@ const ModalBox = ({ component, open, setOpen }) => {
   return (
     <div>
       <Modal
-        aria-labelledby="spring-modal-title"
-        aria-describedby="spring-modal-description"
+        aria-labelledby='spring-modal-title'
+        aria-describedby='spring-modal-description'
         open={open}
         onClose={()=> setOpen(false)}
         closeAfterTransition

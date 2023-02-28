@@ -1,4 +1,4 @@
-import { CardWrapper, CardIMGWrapper, CardTextWrapper } from "../styled"
+import { CardWrapper, CardIMGWrapper, CardTextWrapper } from '../styled'
 
 const SearchCompanyCard = ({mappedCompany, handleClick}) => {
   return (
@@ -9,7 +9,6 @@ const SearchCompanyCard = ({mappedCompany, handleClick}) => {
         <CardTextWrapper>
           <p>{mappedCompany.name}</p>
         </CardTextWrapper>
-        {/* <MoreButton onClick={handleCardClick} fontSize='small'/> */}
     </CardWrapper>
   )
 }

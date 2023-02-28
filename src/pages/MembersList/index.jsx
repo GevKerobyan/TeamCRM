@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import {MemberActions} from '../../components'
 import getUser from '../../utils/getUser'
@@ -9,8 +9,7 @@ import { MemberInfo, Members, PageWrapper, MemberInfoPhoto, MemberName, MemberCo
   import NoAccountsOutlinedIcon from '@mui/icons-material/NoAccountsOutlined';
 
 const MembersList = () => {
-  const { user, company } = useSelector(state => state)
-  const dispatch = useDispatch()
+  const { company } = useSelector(state => state)
 
   const navigate = useNavigate()
 
@@ -44,7 +43,7 @@ const MembersList = () => {
           </MemberName>
           <MemberCompany>
             <MemberCompanyLogo>
-              <img src="" alt="" />
+              <img src='' alt='' />
             </MemberCompanyLogo>
             <MemberCompanyName onClick={() => navigate(`/company/${company.data.name}`)}>
             </MemberCompanyName>
@@ -52,7 +51,7 @@ const MembersList = () => {
           <MemberProjects>
             <h4 className='common_projects'>Common Projects</h4>
             <ProjectCardContainer>
-              <CommonProjectCard></CommonProjectCard>
+              <CommonProjectCard />
             </ProjectCardContainer>
           </MemberProjects>
         </MemberInfo>
@@ -60,13 +59,5 @@ const MembersList = () => {
     </PageWrapper>
   )
 }
-/*
-    companyId: 
-    email: 
-    firstname: 
-    id: 
-    lastname: 
-    photo :
-  */
-export default MembersList
 
+export default MembersList

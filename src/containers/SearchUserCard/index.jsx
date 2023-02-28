@@ -1,14 +1,12 @@
-import { Button, Divider, Popover, Typography } from "@mui/material";
-import { Stack } from "@mui/system";
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { redirect, useNavigate } from "react-router";
-import axiosInstance from "../../axios/axiosConfig";
-import { CardWrapper, CardIMGWrapper, CardTextWrapper, PopupButtonContainer, PopupButton } from "../styled"
+import { Popover } from '@mui/material';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import axiosInstance from '../../axios/axiosConfig';
+import { CardWrapper, CardIMGWrapper, CardTextWrapper, PopupButtonContainer, PopupButton } from '../styled'
 
 import MoreButton from '@mui/icons-material/MoreVertOutlined';
-import { Roles } from "../../utils/role_constants";
-
+import { Roles } from '../../utils/role_constants';
 
 const SearchUserCard = ({ mappedUser }) => {
 

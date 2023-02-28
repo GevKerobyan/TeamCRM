@@ -44,7 +44,6 @@ export const NavbarLink = styled.div`
 	filter: grayscale(50%);
 
 	transition: all ease-in-out 150ms;
-	/* transition: all 1s cubic-bezier(0.92, 0.08999999999999997, 1, 0.48) 150ms; */
 	z-index: 1;
 	font-size: 15px;
 

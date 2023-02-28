@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const TaskColumnBox = styled.div`
   width: 20%;
@@ -43,14 +43,10 @@ export const TaskAddition = styled.div`
 `;
 
 export const TaskAdditionInput = styled.div`
-
 input {
   font-size: 13px;
 }
-
-
-`
-
+`;
 
 export const TaskAdditionButtons = styled.div`
-`
+`;

@@ -4,11 +4,11 @@ import axiosInstance from '../../axios/axiosConfig'
 
 import { CompaniesSection, SearchPageWrapper, UsersSection } from './styled';
 
-import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { Chip, Divider } from '@mui/material';
-import { SearchCompanyCard, SearchUserCard } from '../../containers';
 import { styled } from '@mui/material/styles';
+import CircularProgress from '@mui/material/CircularProgress';
+import { SearchCompanyCard, SearchUserCard } from '../../containers';
 
 const CircularIndeterminate = () => {
   return (
@@ -29,46 +29,17 @@ const SearchResults = () => {
   const searchString = searchParams.get('q')
   const navigate = useNavigate()
 
-  // ====> POPOVER FUNCTIONALITY
-
-  // const [anchorEl, setAnchorEl] = useState(null);
-
-  // const handleCardClick = (event) => {
-
-  //   console.log('consoling: openClick popover :::', event.target)
-  //   setAnchorEl(event.currentTarget);
-  // };
-
-  // const handleCardPopupClose = () => {
-  //   setAnchorEl(null);
-  // };
-
-  // const open = Boolean(anchorEl);
-  // const id = open ? 'simple-popover' : undefined;
-
-  // ====> ====> ====> <==== <==== <==== \\ 
-
   const handleCompanyClick = id => {
     navigate(`/company/${id}`)
   }
-
-  const handleUserClick = id => {
-    navigate(`/user/${id}`)
-  }
-
-  // useEffect(() => {
-  //   console.log('consoling: searchString :::', searchString)
-  // }, [])
 
   const getSearchResults = async () => {
     setLoading(true)
     try {
       const res = await axiosInstance.post('/user/search', { text: searchString });
-      console.log('res in getSearchResults =====> ', res.data)
       setCompaniesResults(res.data.companies)
       setUsersResults(res.data.users)
     } catch (error) {
-      console.log('error in getSearchResults =====> ', error)
     }
     setLoading(false)
   }
@@ -93,7 +64,7 @@ const SearchResults = () => {
       </Root>
       <CompaniesSection>
         {companiesResults.length >= 1
-          ? companiesResults.map((foundCompany, index) => {
+          ? companiesResults.map(foundCompany => {
             return (
               <SearchCompanyCard key={foundCompany.id} mappedCompany={foundCompany} handleClick={handleCompanyClick} />
             )
