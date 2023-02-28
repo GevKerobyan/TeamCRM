@@ -1,6 +1,5 @@
 import axios from 'axios';
 import tokenRefresh from '../utils/tokenRefresh';
-import userRefreshAuthorize from '../redux/slices/user/userSlice';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -12,30 +11,27 @@ const axInstance = axios.create({
 	},
 });
 
-const setAxios = (axInstance) => {
-	const refresh = tokenRefresh();
-	let accessToken = sessionStorage.getItem('accessToken');
-	axInstance.interceptors.request.use(
-		(config) => {
-			if (!config.headers['Authorization']) {
-				config.headers['Authorization'] = `Bearer ${accessToken}`;
-			}
-			return config;
-		},
-		(error) => Promise.reject(error)
-	);
+const setAxios = () => {
+
+	axInstance.interceptors.request.use((config) => {
+		config.headers['Authorization'] = `Bearer ${sessionStorage.getItem('accessToken')}`;
+		return config;
+	});
 
 	axInstance.interceptors.response.use(
 		(response) => response,
 		async (error) => {
 			const prevRequest = error.config;
 			if (error.response.status === 401) {
+				const refresh = tokenRefresh();
 				const newAccessToken = await refresh();
-				prevRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
-				// userRefreshAuthorize({ newToken: newAccessToken });
-				return axInstance(prevRequest);
+				if (newAccessToken) {
+					prevRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
+					return axInstance(prevRequest);
+				}
+				return;
 			}
-			return Promise.reject(error);
+			return;
 		}
 	);
 	return axInstance;

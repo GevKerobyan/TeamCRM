@@ -39,13 +39,13 @@ const userSlice = createSlice({
 	},
 
 	extraReducers: (builder) => {
+		
 		// =====> Login
 		builder.addCase(userLogin.pending, (state) => {
 			state.isLoading = true;
 		});
 		builder.addCase(userLogin.fulfilled, (state, action) => {
 			console.log('consoling: Login FulFilled =====> ', action.payload);
-
 			state.isLoading = false;
 			state.data = action.payload;
 			state.error = '';
@@ -61,16 +61,12 @@ const userSlice = createSlice({
 			state.isLoading = true;
 		});
 		builder.addCase(userSignup.fulfilled, (state, action) => {
-			console.log(
-				'consoling: Signup.FulFilled =====> ',
-				action.payload
-			);
+			console.log('consoling: Signup.FulFilled =====> ', action.payload);
 			state.isLoading = false;
 			state.data = action.payload;
 			state.error = '';
 		});
 		builder.addCase(userSignup.rejected, (state, action) => {
-			console.log('consoling: Signup Rejected =====> ');
 
 			state.isLoading = false;
 			state.data = userState;
@@ -82,12 +78,13 @@ const userSlice = createSlice({
 			state.isLoading = true;
 		});
 		builder.addCase(userGetInitial.fulfilled, (state, action) => {
+			console.log('consoling: GetInitial.FulFilled =====> ', action.payload);
+
 			state.isLoading = false;
 			state.data = action.payload;
 			state.error = '';
 		});
 		builder.addCase(userGetInitial.rejected, (state, action) => {
-			// console.log(action);
 			state.isLoading = false;
 			state.data = userState;
 			state.error = action.payload;
@@ -113,6 +110,7 @@ const userSlice = createSlice({
 			state.isLoading = true;
 		});
 		builder.addCase(userEdit.fulfilled, (state, action) => {
+			console.log('consoling: Edit.FulFilled =====> ', action.payload);
 			state.isLoading = false;
 			state.data = action.payload;
 			state.error = '';

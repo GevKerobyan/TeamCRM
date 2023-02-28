@@ -7,7 +7,7 @@ import { DeleteButtonContainer, Form, FormTitle, FormWrapper, InputWrapper, Subm
 import { EditBG } from './styled'
 
 
-const EditUserForm = ({ userStates, inputRef }) => {
+const EditUserForm = ({ userStates, inputRef, setModalOpen }) => {
 
   const { user } = useSelector(state => state)
   const dispatch = useDispatch()
@@ -23,7 +23,6 @@ const EditUserForm = ({ userStates, inputRef }) => {
 
   const [deleteBtn, setDeleteBtn] = useState(false)
 
-
   const imgFilehandler = (e) => {
     if (e.target.files.length !== 0) {
       setPhoto(e.target.files[0])
@@ -38,11 +37,12 @@ const EditUserForm = ({ userStates, inputRef }) => {
     eidtedUser.append('firstname', fName)
     eidtedUser.append('lastname', lName)
     eidtedUser.append('email', mail)
-    // eidtedUser.append('password', pass)
     eidtedUser.append('photo', photo)
 
     dispatch(userEdit({ eidtedUser }))
-      .then(() => navigate(`/user/${user.data.id}`))
+      .then(() => {
+        setModalOpen(false)
+        navigate(`/user/${user.data.id}`)})
   }
 
 

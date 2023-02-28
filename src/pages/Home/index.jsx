@@ -11,10 +11,10 @@ const Home = () => {
   const navigate = useNavigate()
 
   useEffect(()=> {
-    if(user.data.isAuth) {
+      if(user.data.isAuth) {
       navigate(`/user/${user.data.id}`)
-    }
-  },[])
+      }
+    }, [user])
 
   return (
     <PageWrapper>

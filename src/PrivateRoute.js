@@ -1,10 +1,13 @@
 import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router';
+import { Home } from './pages';
 
 const PrivateRoute = ({ component }) => {
-	const {user} = useSelector((state)=> state);
-	const {isAuth} = user.data 
+	const { user } = useSelector((state) => state);
+	const { isAuth } = user.data;
 
-	return isAuth ? component : null;
+		return isAuth ? component : <Navigate to='/'/> ;
+	
 };
 
 export default PrivateRoute;

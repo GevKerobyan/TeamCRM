@@ -1,2 +1,9 @@
-export {default as ProfileDropdown} from './dropdowns/ProfileDropdown'
-export {default as CompanyDropdown} from './dropdowns/CompanyDropdown'
+export { default as UserEdit } from './userEdit';
+export { default as UserSidebar } from './userSidebar';
+export { default as UsersGroup } from './navbarUsers';
+export { default as CreateCompany } from './createCompany';
+export { default as MemberActions } from './memberActionMenu';
+export { default as TaskColumn } from './tasksPageContent/taskColumn'
+export { default as TasksPageContent } from './tasksPageContent';
+export { default as TaskPageHeader } from './taskPageHeader'
+export { default as ChatMiniBox } from './chatMiniBox'

@@ -1,9 +1,38 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { Navigate } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../../axios/axiosConfig';
-import { colorCode } from '../../../helpers';
-export const addCompanyData = createAsyncThunk('company/addCompanyData', async ({_id, rejectWithValue}) => {
-  
-});
+
+export const companyCreate = createAsyncThunk(
+	'company/createCompany',
+	async ({ company, rejectWithValue }) => {
+		try {
+			let accessToken = sessionStorage.getItem('accessToken');
+			const res = await axiosInstance.post(`/companies`, company, {
+				headers: {
+					'Access-Control-Allow-Origin': '*',
+					'Content-Type': 'multipart/form-data',
+					Authorization: `Bearer ${accessToken}`,
+				},
+			});
+			console.log('consoling: res in CreateCompany =====> ', res);
+			return res.data;
+		} catch (error) {
+			console.log('consoling: error in CreateCompany =====> ', error);
+			return rejectWithValue(error.error);
+		}
+	}
+);
+
+export const companyGet = createAsyncThunk(
+	'company/getCompany',
+	async ({ companyId, rejectWithValue }) => {
+		try {
+			const res = await axiosInstance.get(`/companies/${companyId}`);
+			console.log('consoling: res in GetCompany =====> ', res);
+			return res.data;
+		} catch (error) {
+			console.log('consoling: error in GetCompany =====> ', error);
+			return rejectWithValue(error.error);
+		}
+	}
+);
+

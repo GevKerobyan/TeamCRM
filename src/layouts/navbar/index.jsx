@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { userSignout } from '../../redux/slices/user/userAsyncs'
-import { userSyncLogout } from '../../redux/slices/user/userSlice';
+import { ModalBox } from '../index';
 
 // =====> Material UI
 import {
@@ -14,6 +14,7 @@ import {
   IconButton,
   MenuItem,
   Menu,
+  Divider,
 } from '@mui/material';
 
 // =====> ICONS
@@ -23,11 +24,16 @@ import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsIcon from '@mui/icons-material/Settings';
-import NoteAddIcon from '@mui/icons-material/NoteAdd';
+import NotificationsIcon from '@mui/icons-material/NoteAdd';
+import JoinCompanyIcon from '@mui/icons-material/JoinInnerOutlined';
+import SearchIcon from '@mui/icons-material/SearchOutlined';
 
 // =====> STYLES
-import { NavbarLink, NavDropdownLine, NavLogoIMG, ProfileImageBox } from './styled';
-import { useEffect } from 'react';
+import { NavbarLink, NavDropdownLine, NavLogoIMG, ProfileImageBox, SearchInput, SearchInputWrapper } from './styled';
+
+// =====> COMPONENTS
+import { UsersGroup, CreateCompany, UserEdit } from '../../components';
+import { useSearchParams } from 'react-router-dom';
 
 const Navbar = () => {
 
@@ -38,8 +44,14 @@ const Navbar = () => {
   const [anchorElCom, setAnchorElCom] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [anchorElNotes, setAnchorElNotes] = useState(null);
-
+  const [modalComponent, setModalComponent] = useState('')
   const { isAuth } = user.data
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const [searchParams, setSearchParams] = useSearchParams('')
+  const [searchText, setSearchText] = useState('')
+
 
   const handleOpenCompanyMenu = (event) => {
     setAnchorElCom(event.currentTarget);
@@ -49,7 +61,6 @@ const Navbar = () => {
     setAnchorElUser(event.currentTarget);
   };
 
-
   const handleOpenNotesMenu = (event) => {
     setAnchorElNotes(event.currentTarget);
   }
@@ -58,33 +69,40 @@ const Navbar = () => {
     setAnchorElCom(null);
   };
 
-
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
   const handleEditClick = () => {
-    navigate(`profile/${user.data.id}/edit`)
-  }
-
-  const handleSignOut = () => {
-    dispatch(userSyncLogout())
-    // dispatch(userSignout())
-    navigate('/')
+    setModalComponent(<UserEdit setModalOpen={setModalOpen}/>)
+    setModalOpen(true)
   }
 
   const handleAddCompanyClick = () => {
-    navigate('/companycreate')
+    setModalComponent(<CreateCompany />)
+    setModalOpen(true)
+  }
+
+  const handleSignOut = () => {
+    const { refreshToken } = JSON.parse(localStorage.getItem('auth'))
+    dispatch(userSignout({ refreshToken })).
+    then(()=> navigate('/'))
+  }
+
+  const handleSearch = async (e) => {
+    e.preventDefault()
+    window.location = `http://localhost:3000/search/?q=${searchText}`
   }
 
   return (
     <AppBar className='navbar' >
-      <Toolbar className='toolbar' >
+      <ModalBox component={modalComponent} open={modalOpen} setOpen={setModalOpen} />
+      <Toolbar className='toolbar' sx={{ display: 'flex', gap: '50px' }} >
         <Typography
           variant='h1'
           noWrap
           component='a'
-          href='/'
+          onClick={() => navigate(`/user/${user.data.id}`)}
           sx={{
             mr: 2,
             fontFamily: 'monospace',
@@ -93,6 +111,7 @@ const Navbar = () => {
             color: 'inherit',
             textDecoration: 'none',
             p: 0,
+            cursor: 'pointer',
           }}
         >
           <NavLogoIMG >
@@ -107,16 +126,25 @@ const Navbar = () => {
           gap: '50px'
         }}>
 
+          <SearchInputWrapper >
+            <form onSubmit={e => handleSearch(e)}>
+              <SearchInput type='search' value={searchText} onChange={e => { setSearchText(e.target.value) }} placeholder='Find your match' />
+              <button>
+                <SearchIcon />
+              </button>
+            </form>
+          </SearchInputWrapper>
           {/* Company menu */}
 
           <Tooltip title='Company details'>
             <IconButton onClick={handleOpenCompanyMenu} sx={{ p: 0 }}>
-              <NavbarLink>
-                {company.data.name ? company.data.name : <h2> Company </h2>}
+              <NavbarLink >
+                {company.data?.name ? company.data?.name : <h2> Company </h2>}
                 {anchorElCom ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
               </NavbarLink>
             </IconButton>
           </Tooltip>
+
           <Menu
             sx={{ mt: '45px' }}
             id='menu-appbar'
@@ -133,22 +161,48 @@ const Navbar = () => {
             open={Boolean(anchorElCom)}
             onClose={handleCloseCompanyMenu}
           >
-            <MenuItem onClick={handleCloseCompanyMenu}>
-              {company.data.name
-                ? <>
-                  <Typography component={'div'} textAlign='center'>{company.data.name}</Typography>
-                  <Typography component={'div'} textAlign='center'>Members</Typography>
-                </>
-                : <>
-                  <Typography component={'div'} textAlign='center'>
-                    <NavDropdownLine onClick={handleAddCompanyClick}>
-                      <NoteAddIcon />Add company
-                    </NavDropdownLine >
+            {company.data.name
+              ? <div>
+                <MenuItem onClick={() => navigate(`/company/${company.data.name}`)}>
+                  <NavDropdownLine >
+                    {company.data.name}
+                  </NavDropdownLine >
+                </MenuItem>
+                <Divider />
+                <MenuItem onClick={handleCloseCompanyMenu}>
+                  <NavDropdownLine onClick={() => navigate(`/company/${company.data.name}/members`)}>
+                    <UsersGroup title='View all members' />
+                  </NavDropdownLine >
+                </MenuItem>
+                <Divider />
+                <MenuItem  >
+                  <NavDropdownLine >
+                    Add project
+                  </NavDropdownLine >
+                </MenuItem>
+              </div>
+              : <div>
+                <MenuItem onClick={handleCloseCompanyMenu}>
 
+                  <Typography component={'div'} textAlign='center' >
+                    <NavDropdownLine onClick={handleAddCompanyClick}>
+                      <NotificationsIcon /> Add company
+                    </NavDropdownLine >
                   </Typography>
-                </>
-              }
-            </MenuItem>
+
+                </MenuItem>
+                <Divider />
+                <MenuItem onClick={handleCloseCompanyMenu}>
+
+                  <Typography component={'div'} textAlign='center' >
+                    <NavDropdownLine>
+                      <JoinCompanyIcon /> Join a company
+                    </NavDropdownLine >
+                  </Typography>
+
+                </MenuItem>
+              </div>
+            }
           </Menu>
 
           {/* Notification menu */}
@@ -168,7 +222,7 @@ const Navbar = () => {
               <NavbarLink>
                 {user.data.photo
                   ? <ProfileImageBox>
-                    <img src={user.data.photo} />
+                    <img src={user.data.photo} title='Eghav' />
                   </ProfileImageBox>
                   : <PermIdentityIcon />
                 }
@@ -192,6 +246,14 @@ const Navbar = () => {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
+            <MenuItem onClick={() => navigate(`/user/${user.data.id}`)}>
+              <NavDropdownLine >
+                <Typography textAlign='center' variant='body1'>
+                  {user.data.firstname}
+                </Typography>
+              </NavDropdownLine >
+            </MenuItem>
+            <Divider />
             <MenuItem onClick={handleCloseUserMenu}>
               <Typography component={'div'} textAlign='center' >
                 <NavDropdownLine onClick={handleEditClick} >

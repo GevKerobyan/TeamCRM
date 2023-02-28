@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const SidebarWrapper = styled.div`
 	position: absolute;
-	width: 200px;
+	width: 150px;
 	height: 50vh;
 	padding: 25px 15px;
 	display: flex;
@@ -15,7 +15,7 @@ export const SidebarWrapper = styled.div`
 	background-color: rgba(57, 42, 72, 1);
 	box-shadow: 20px 0px 100px 16px rgba(57, 42, 72, 0.5);
 	transition: all 1s;
-	left: -175px;
+	left: -125px;
 	font-size: 12px;
 	z-index: 999;
 	:hover {

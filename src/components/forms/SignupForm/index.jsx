@@ -16,10 +16,6 @@ const SignupForm = () => {
   const [mail, setMail] = useState('')
   const [pass, setPass] = useState('')
 
-  // useEffect(()=> {
-  //   console.log('consoling: user in signup :::', user )
-  // }, [user])
-
   const handleSignupSubmit = e => {
     e.preventDefault()
 

@@ -18,6 +18,7 @@ export const LinkContainer = styled.div`
   color: white;
   transition: all 0.4s;
   z-index: 1;
+	filter: grayscale(50%);
 
 	::before {
 		content: '';
@@ -40,7 +41,7 @@ export const LinkContainer = styled.div`
 	}
 
   :hover{
-    filter: brightness(200%);
+    filter: grayscale(0);
     transform: scale(1.02);
   }
 

@@ -1,2 +1,4 @@
-export {default as Navbar} from './navbar'
-export {default as PageWrapper} from './PageWrapper'
+export { default as Navbar } from './navbar';
+export { default as ModalBox } from './modal';
+export { default as PageWrapper } from './PageWrapper';
+export { default as UserDrawer } from './UserDrawer'

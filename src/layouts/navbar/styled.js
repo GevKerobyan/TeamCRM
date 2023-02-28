@@ -1,5 +1,4 @@
-import styled from "styled-components";
-
+import styled from 'styled-components';
 
 export const NavLogo = styled.div`
 	height: 100%;
@@ -11,8 +10,8 @@ export const NavLogo = styled.div`
 `;
 
 export const NavLogoIMG = styled.div`
-	width: 50px;
-	height: 50px;
+	width: 40px;
+	height: 40px;
 	border-radius: 78% 43% 57% 22%;
 	display: flex;
 	align-items: center;
@@ -33,7 +32,7 @@ export const NavLogoIMG = styled.div`
 
 export const NavbarLink = styled.div`
 	position: relative;
-	height: 50px;
+	height:40px;
 	background: transparent;
 	width: auto;
 	min-width: 75px;
@@ -42,7 +41,8 @@ export const NavbarLink = styled.div`
 	justify-content: center;
 	padding: 0 5px;
 	cursor: pointer;
-	
+	filter: grayscale(50%);
+
 	transition: all ease-in-out 150ms;
 	/* transition: all 1s cubic-bezier(0.92, 0.08999999999999997, 1, 0.48) 150ms; */
 	z-index: 1;
@@ -55,19 +55,20 @@ export const NavbarLink = styled.div`
 	}
 
 	:hover {
-		filter: brightness(150%);
+		filter: grayscale(0);
 	}
 `;
 
 export const ProfileImageBox = styled.div`
 	width: 30px;
 	height: 30px;
-	border-radius:  5px;
+	border-radius: 5px;
 	overflow: hidden;
 
 	img {
 		width: 30px;
 		height: 30px;
+		object-fit: cover;
 	}
 `;
 
@@ -78,8 +79,44 @@ export const NavDropdownLine = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	gap: 10px;
+	filter: grayscale(50%);
 
 	:hover {
-		filter: brightness(200%);
+		filter: grayscale(0);
 	}
+`;
+
+export const SearchInputWrapper = styled.div`
+	position: relative;
+	width: auto;
+	max-width: 300px;
+	border-radius: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	button {
+		position: absolute;
+		background: none;
+		border: none;
+		right: -5px;
+		top: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transform: translateY(-50%);
+		
+		svg {
+			fill: var(--sidebar-BG);
+			font-size: 22px;
+		}
+	}
+`;
+
+export const SearchInput = styled.input`
+	width: 100%;
+	border-radius: 10px;
+	background: whitesmoke;
+	padding: 7px 25px;
+	color: black;
 `;

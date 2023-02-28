@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { DeleteIMGButton, ProfileHolder } from '../../assets/Icons'
 import { SidebarWrapper, SideImgPreview, SideInfo, SideInfoLine, DeleteButtonContainer } from './styled'
 
@@ -14,17 +14,16 @@ const UserSidebar = ({ userStates, inputRef }) => {
 
   const [deleteBtn, setDeleteBtn] = useState(false)
 
-
-
   return (
     <SidebarWrapper >
       <SideImgPreview onMouseEnter={() => setDeleteBtn(true)} onMouseLeave={() => setDeleteBtn(false)}>
-        {deleteBtn && photoPreview && <DeleteButtonContainer onClick={() => {
+        {deleteBtn && photoPreview && <DeleteButtonContainer
+         onClick={() => {
           inputRef.current.value = ''
           setPhotoPreview(''); 
           setPhoto('')
         }}><DeleteIMGButton /></DeleteButtonContainer>}
-        {photoPreview ? <img src={photoPreview} alt="avatar" /> : <ProfileHolder color='rgba(57, 42, 72, 1)' size='100'></ProfileHolder>}
+        {photoPreview ? <img src={photoPreview} alt="avatar" /> : <ProfileHolder color='rgba(57, 42, 72, 1)' size='100' />}
       </SideImgPreview>
       <SideInfo>
         <SideInfoLine> Name: {fName} {lName}</SideInfoLine>

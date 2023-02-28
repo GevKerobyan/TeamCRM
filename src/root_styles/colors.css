@@ -67,8 +67,11 @@
   --color-bg: #040c18;
   --color-footer: #031b34;
   --color-blog: #042c54;
-  --color-text: #81afdd;
+  --color-text: rgb(129, 175, 221);
   --color-subtext: #ff8a71;
+
+  --popup-btn: rgba(129, 175, 221, 0.4);
+  --popup-btn-hover: rgb(129, 175, 221);
 
   --heart: rgba(0, 122, 199, 1);
   --silver: rgba(192, 192, 192, 0.2);
@@ -84,5 +87,9 @@
   --eerie-black: rgba(27, 27, 27, 1);
   --chinese-black: rgba(20, 20, 20, 1);
 
-  --sidebar-BG: rgba(34, 40, 69, 1)
+  --sidebar-BG: rgba(34, 40, 69, 1);
+  --topbar-BG-hover: rgba(34, 40, 69, 0.2);
+  --add-btn: rgb(52, 60, 149);
+
+  --add-btn-hover: rgba(88, 101, 242, 1);
 }
