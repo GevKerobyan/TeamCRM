@@ -278,7 +278,7 @@ const UserDrawer = ({isOpen,  setIsOpen,  setChatUsers}) => {
 									>
 										<ListItemAvatar>
 											<Avatar sx={{ width: '20px', height: '20px' }}>
-												<img src={contact.photo} alt='member' />
+												<img src={contact.photo} alt='member' width={20} height='fit-content'/>
 											</Avatar>
 										</ListItemAvatar>
 										<ListItemText primary={contact.firstname} sx={{

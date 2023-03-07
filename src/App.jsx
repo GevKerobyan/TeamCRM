@@ -12,18 +12,19 @@ import PrivateRoute from './PrivateRoute';
 import { TestDrawer, Company, Home, Login, Signup, User, MembersList, SearchResults, Project } from './pages';
 import { ChatMiniBox } from './components';
 import { Navbar } from './layouts';
+import { DraggabaleBoundsBox } from './components/chatMiniBox/styled';
 
 
 function App() {
 
 	const { user } = useSelector(state => state)
 	const dispatch = useDispatch()
-	
+
 	const [chatOpen, setChatOpen] = useState(false)
 	const [chatUsers, setChatUsers] = useState([])
-	
+
 	const refreshToken = localStorage.getItem('auth')
-	
+
 	useEffect(() => {
 		if (refreshToken) {
 			dispatch(userGetInitial())
@@ -34,7 +35,6 @@ function App() {
 		if (user.data.company?._id) {
 			const companyId = user.data.company._id
 			dispatch(companyGet({ companyId }))
-			dispatch(companyGet({ companyId }))
 		}
 	}, [user])
 
@@ -42,7 +42,10 @@ function App() {
 		<Router>
 			<div className='app'>
 				<Navbar />
-				{chatOpen && user.data.isAuth && <ChatMiniBox isOpen={chatOpen} setIsOpen={setChatOpen} chatUsers={chatUsers} />}
+				{chatOpen && user.data.isAuth && <DraggabaleBoundsBox>
+					<ChatMiniBox isOpen={chatOpen} setIsOpen={setChatOpen} chatUsers={chatUsers} />
+				</DraggabaleBoundsBox>
+				}
 				<Routes>
 					<Route exact path='/' element={<Home />} />
 					<Route path='/login' element={<Login />} />

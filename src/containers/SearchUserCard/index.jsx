@@ -6,7 +6,7 @@ import axiosInstance from '../../axios/axiosConfig';
 import { CardWrapper, CardIMGWrapper, CardTextWrapper, PopupButtonContainer, PopupButton } from '../styled'
 
 import MoreButton from '@mui/icons-material/MoreVertOutlined';
-import { Roles } from '../../utils/role_constants';
+import { Roles } from '../../utils';
 
 const SearchUserCard = ({ mappedUser }) => {
 

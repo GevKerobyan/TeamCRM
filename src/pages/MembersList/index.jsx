@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import {MemberActions} from '../../components'
-import getUser from '../../utils/getUser'
+import {getUser} from '../../utils'
 import MembersCard from './MembersCard'
 import { MemberInfo, Members, PageWrapper, MemberInfoPhoto, MemberName, MemberCompany, MemberCompanyLogo, 
   MemberCompanyName, MemberProjects, ProjectCardContainer, CommonProjectCard } from './styled'

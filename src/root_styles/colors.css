@@ -33,16 +33,16 @@
 
   --mixed-bg: #dbd8cf;
   --mixed-bg-light: #e9e6dd;
-  --mixed-purple: #3e23ab;
-  --mixed-blue: #4738a5;
-  --mixed-blue-dark: #3b5998;
+  --mixed-purple: rgb(62, 35, 171);
+  --mixed-blue: rgb(71, 56, 165);
+  --mixed-blue-dark: rgb(59, 89, 152);
 
   --mixed-pink-light: #fcddec;
   --mixed-pink-bold: #ff8ec8;
   --mixed-link: #0041e9;
   --mixed-red: rgba(207, 22, 22, 1);
   --mixed-red05: rgba(207, 22, 22, 0.05);
-  --mixed-blue-shade: #5865f2;
+  --mixed-blue-shade: rgb(88, 101, 242);
   --mixed-green-normal: #e3efe1;
   --mixed-pink-light: #fff9fb;
   --mixed-color-negative: #e3dbeb;
@@ -55,18 +55,18 @@
   --mixed-unknown-4: rgb(145, 73, 74);
   --mixed-unknown-5: rgb(255, 112, 109);
   --mixed-dim-white: rgb(240, 242, 245);
-  --mixed-dim-grey-1: #2f4050;
+  --mixed-dim-grey-1: rgb(47, 64, 80);
   --mixed-dim-grey-2: #293846;
   --mixed-unknown-6: rgb(68, 34, 41);
   --mixed-unknown-7: rgb(145, 73, 74);
   --mixed-unknown-8: rgb(255, 112, 109);
 
   --red-brick: rgba(235, 75, 77, 0.8);
-  --white-over: rgba(246,246,246, 0.9);
+  --white-over: rgba(246, 246, 246, 0.9);
 
   --color-bg: #040c18;
-  --color-footer: #031b34;
-  --color-blog: #042c54;
+  --color-footer: rgb(3, 27, 52);
+  --color-blog: rgb(4, 44, 84);
   --color-text: rgb(129, 175, 221);
   --color-subtext: #ff8a71;
 
@@ -76,12 +76,12 @@
   --heart: rgba(0, 122, 199, 1);
   --silver: rgba(192, 192, 192, 0.2);
 
-  --submit-button: rgb(174,67,67);
+  --submit-button: rgb(174, 67, 67);
 
   --navbar-bg: rgb(20, 20, 21);
   --navbar-link-active: rgb(91, 91, 92);
 
-  --main-bg: rgb(248,248,251);
+  --main-bg: rgb(248, 248, 251);
 
   --sidebar-bg-1: rgba(40, 40, 43, 1);
   --eerie-black: rgba(27, 27, 27, 1);
@@ -92,4 +92,13 @@
   --add-btn: rgb(52, 60, 149);
 
   --add-btn-hover: rgba(88, 101, 242, 1);
+
+  /* MESSAGE STYLES */
+
+  --message-header: rgb(0, 0, 0);
+  --message-header-name: rgb(204, 205, 208);
+  --message-content-bg: rgb(39, 40, 46);
+  --single-contact-message-container: rgb(22, 23, 27);
+  --single-own-message-container: rgb(71, 56, 165);
+  
 }

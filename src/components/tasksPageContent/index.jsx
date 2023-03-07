@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import TaskColumn from './taskColumn'
 
-import { TaskListWrapper, AddColumnWrapper, AddColumn, ColumnAddition, ColumnAdditionInput } from './styled'
+import { TaskListWrapper, AddColumnWrapper, AddColumn, ColumnAddition, ColumnAdditionInput, ErrorWrapper} from './styled'
 
 import { styled } from '@mui/material/styles';
 import { Button, ButtonGroup, Input } from '@mui/material';
@@ -15,6 +15,7 @@ const TasksPageContent = () => {
   const [columns, setColumns] = useState([])
   const [columnTitle, setColumnTitle] = useState('')
   const [addColumnOpen, setAddColumnOpen] = useState(false)
+  const [addColumnError, setAddColumnError] = useState('')
 
   useEffect(() => {
     project.data.tasks?.map(item => {
@@ -34,9 +35,11 @@ const TasksPageContent = () => {
 
   const handleNewColumnClick = e => {
     e.preventDefault()
-    setColumns(prev => [...prev, columnTitle])
-    setColumnTitle('')
-    setAddColumnOpen(false)
+    if(columnTitle){
+      setColumns(prev => [...prev, columnTitle])
+      setColumnTitle('')
+      setAddColumnOpen(false)
+    } else setAddColumnError('* Title required')
   }
   return (
     <>
@@ -55,8 +58,9 @@ const TasksPageContent = () => {
           : <ColumnAddition>
           <form>
             <ColumnAdditionInput>
-              <Input placeholder='Type in here…' type='textarea' variant='plain' fullWidth value={columnTitle} onChange={e => { setColumnTitle(e.target.value) }} />
+              <Input placeholder='Type in here…' type='textarea' variant='plain' fullWidth value={columnTitle} onChange={e => { setColumnTitle(e.target.value) }} onFocus={()=>setAddColumnError('')}/>
             </ColumnAdditionInput>
+            <ErrorWrapper>{addColumnError}</ErrorWrapper>
             <ButtonGroup sx={{ display: 'flex', gap: '10px', padding: '5px 0', alignItems: 'center' }}>
               <ColorButton fullWidth onClick={e => handleNewColumnClick(e)} type='submit'>
                 Add

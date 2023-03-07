@@ -10,6 +10,7 @@ export const TaskListWrapper = styled.div`
 	padding: 25px;
 `;
 
+
 export const AddColumnWrapper = styled.div`
 	width: 20%;
 	min-width: 255px;
@@ -50,4 +51,14 @@ input {
 }`
 
 export const ColumnAdditionButtons = styled.div`
+`
+
+export const ErrorWrapper = styled.p`
+	color: var(--mixed-red);
+	margin-top: 5px;
+	text-align: left;
+	font-size: 12px;
+	font-style: oblique;
+	
+
 `

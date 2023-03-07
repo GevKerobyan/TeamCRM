@@ -15,7 +15,7 @@ export const NavLogoIMG = styled.div`
 	border-radius: 78% 43% 57% 22%;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
 	padding: 10px;
 	background: linear-gradient(
 		90deg,
@@ -26,7 +26,7 @@ export const NavLogoIMG = styled.div`
 
 	h1 {
 		font-weight: 700;
-		font-size: 13px;
+		font-size: 10px;
 	}
 `;
 
