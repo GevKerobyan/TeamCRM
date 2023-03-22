@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const DraggabaleBoundsBox = styled.div`
-	position: relative;
+	position: absolute;
 	width: 100vw;
 	padding-left:250px;
 `;

@@ -93,6 +93,8 @@
 
   --add-btn-hover: rgba(88, 101, 242, 1);
 
+  --company-info-hover: rgba(71, 56, 165, 0.03);
+  
   /* MESSAGE STYLES */
 
   --message-header: rgb(0, 0, 0);
@@ -100,5 +102,4 @@
   --message-content-bg: rgb(39, 40, 46);
   --single-contact-message-container: rgb(22, 23, 27);
   --single-own-message-container: rgb(71, 56, 165);
-  
 }

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import TaskColumn from './taskColumn'
 
-import { TaskListWrapper, AddColumnWrapper, AddColumn, ColumnAddition, ColumnAdditionInput, ErrorWrapper} from './styled'
+import { TaskListWrapper, AddColumnWrapper, AddColumn, ColumnAddition, ColumnAdditionInput, ErrorWrapper } from './styled'
 
 import { styled } from '@mui/material/styles';
 import { Button, ButtonGroup, Input } from '@mui/material';
@@ -35,17 +35,19 @@ const TasksPageContent = () => {
 
   const handleNewColumnClick = e => {
     e.preventDefault()
-    if(columnTitle){
+    if (columnTitle) {
       setColumns(prev => [...prev, columnTitle])
       setColumnTitle('')
       setAddColumnOpen(false)
     } else setAddColumnError('* Title required')
   }
+
+
   return (
     <>
       <TaskListWrapper>
         {columns?.map((column, i) => {
-          return <TaskColumn title={column} key={i}/>
+          return <TaskColumn title={column} key={i} />
         })}
 
         {!addColumnOpen
@@ -56,21 +58,21 @@ const TasksPageContent = () => {
             </AddColumn>
           </AddColumnWrapper>
           : <ColumnAddition>
-          <form>
-            <ColumnAdditionInput>
-              <Input placeholder='Type in here…' type='textarea' variant='plain' fullWidth value={columnTitle} onChange={e => { setColumnTitle(e.target.value) }} onFocus={()=>setAddColumnError('')}/>
-            </ColumnAdditionInput>
-            <ErrorWrapper>{addColumnError}</ErrorWrapper>
-            <ButtonGroup sx={{ display: 'flex', gap: '10px', padding: '5px 0', alignItems: 'center' }}>
-              <ColorButton fullWidth onClick={e => handleNewColumnClick(e)} type='submit'>
-                Add
-              </ColorButton>
-              < CloseOutlinedIcon fontSize='small' style={{
-                cursor: 'pointer', '&:hover': {
-                  background: 'red',
-                }
-              }} onClick={() => setAddColumnOpen(false)} />
-            </ButtonGroup>
+            <form>
+              <ColumnAdditionInput>
+                <Input placeholder='Type in here…' type='textarea' variant='plain' fullWidth value={columnTitle} onChange={e => { setColumnTitle(e.target.value) }} onFocus={() => setAddColumnError('')} />
+              </ColumnAdditionInput>
+              <ErrorWrapper>{addColumnError}</ErrorWrapper>
+              <ButtonGroup sx={{ display: 'flex', gap: '10px', padding: '5px 0', alignItems: 'center' }}>
+                <ColorButton fullWidth onClick={e => handleNewColumnClick(e)} type='submit'>
+                  Add
+                </ColorButton>
+                < CloseOutlinedIcon fontSize='small' style={{
+                  cursor: 'pointer', '&:hover': {
+                    background: 'red',
+                  }
+                }} onClick={() => setAddColumnOpen(false)} />
+              </ButtonGroup>
             </form>
           </ColumnAddition>
         }

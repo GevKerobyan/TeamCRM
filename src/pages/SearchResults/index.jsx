@@ -55,10 +55,12 @@ const SearchResults = () => {
       marginTop: theme.spacing(2),
     },
   }));
-
+  
+  if (loading) { return <CircularIndeterminate />}
+  
   return (
     <SearchPageWrapper>
-      {loading && <CircularIndeterminate />}
+      
       <Root>
         <Divider textAlign='left' flexItem variant='middle' sx={{ margin: '15px 0' }} role='presentation'><Chip label='Companies' /></Divider>
       </Root>

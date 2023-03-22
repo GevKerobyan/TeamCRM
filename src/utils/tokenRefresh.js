@@ -24,7 +24,7 @@ const tokenRefresh = () => {
 			// else return;
 		} catch (error) {
 			if(error.status === 403) return
-			console.log('error in refresh ====> error');
+			console.log('error in refresh ====> ', error);
 		}
 	};
 	return refresh;

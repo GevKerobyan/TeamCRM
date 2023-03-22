@@ -86,7 +86,7 @@ export const userGetInitial = createAsyncThunk(
 		try {
 			const res = await axiosInstance.get('/user');
 			return {
-				...res.data,
+				...res?.data,
 				isAuth: true,
 				colorCode: colorCode(),
 			};

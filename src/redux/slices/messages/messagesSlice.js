@@ -8,9 +8,9 @@ const messagesState = [
 				sender_id: '',
 				sender_photo: '',
 			},
-			reciever: {
-				reciever_id: '',
-				reciever_photo: '',
+			receiver: {
+				receiver_id: '',
+				receiver_photo: '',
 			},
 			content: '',
 			is_read: false,
@@ -39,6 +39,20 @@ const messagesSlice = createSlice({
 			state.data.is_read = true;
 		},
 	},
+	extraReducers: builder => {
+		// builder.addCase(chatStart.pending, state=> {
+		// 	state.isLoading = true
+		// });
+		// builder.addCase(chatStart.fulfilled, (state, action)=> {
+		// 	state.isLoading = false;
+		// 	state.data = action.payload;
+		// 	state.error = '';
+		// });
+		// builder.addCase(chatStart.rejected, (state, action) => {
+		// 	state.isLoading = false;
+		// 	state.error = action.payload;
+		// })
+	}
 });
 
 export default messagesSlice.reducer;

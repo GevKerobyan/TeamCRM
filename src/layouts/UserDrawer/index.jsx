@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { styled } from '@mui/material/styles';
 import { DrawerProjectsContainer, DrawerSingleProjectBox, DrawerSingleProjectLogo, DrawerDingleProjectTitle, AddProjectBox } from './styled'
@@ -26,6 +26,7 @@ import CreateProject from '../../components/createProject';
 import { useState } from 'react';
 import { NoProjectLogo } from '../../assets/Icons';
 import { useNavigate } from 'react-router';
+import { chatStart } from '../../redux/slices/chat/chatAsyncs';
 
 const drawerWidth = 200;
 
@@ -93,10 +94,10 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 
-const UserDrawer = ({isOpen,  setIsOpen,  setChatUsers}) => {
+const UserDrawer = ({ isOpen, setIsOpen, chatOwner, setChatContacts }) => {
 
 	const { user, company, project } = useSelector(state => state)
-
+	const dispatch = useDispatch()
 	const navigate = useNavigate()
 
 	const [open, setOpen] = useState(false);
@@ -116,7 +117,7 @@ const UserDrawer = ({isOpen,  setIsOpen,  setChatUsers}) => {
 		setOpenProjects(false)
 		setOpen(false);
 	};
-	
+
 	const handleProjectCLick = () => {
 		setOpenProjects(!openProjects)
 	}
@@ -133,9 +134,16 @@ const UserDrawer = ({isOpen,  setIsOpen,  setChatUsers}) => {
 		{ icon: <ProjectIcon fontSize='20' width='25px' />, name: 'Projects', title: 'See projects', click: handleProjectCLick },
 	];
 
-	const handleUserClick = (contact, e) => {
+
+	let secondUserId, currentUserId
+
+	const handleUserClick = (e, contact) => {
+		setIsOpen(false)
+		secondUserId = contact._id
+		currentUserId = user.data.id
 		e.preventDefault();
-		setChatUsers(contact)
+		setChatContacts(contact)
+		dispatch(chatStart({ currentUserId, secondUserId }))
 		setIsOpen(true)
 	}
 
@@ -230,7 +238,7 @@ const UserDrawer = ({isOpen,  setIsOpen,  setChatUsers}) => {
 						<DrawerProjectsContainer>
 							{user.data.projects ?
 								<DrawerSingleProjectBox onClick={handleExistingProjectClick}>
-									<DrawerSingleProjectLogo ><NoProjectLogo color='white'/></DrawerSingleProjectLogo>
+									<DrawerSingleProjectLogo ><NoProjectLogo color='white' /></DrawerSingleProjectLogo>
 									<DrawerDingleProjectTitle>{project.data.name}</DrawerDingleProjectTitle>
 								</DrawerSingleProjectBox>
 								: <AddProjectBox onClick={handleAddProjectClick}>
@@ -274,11 +282,11 @@ const UserDrawer = ({isOpen,  setIsOpen,  setChatUsers}) => {
 												<MessageOutlinedIcon fontSize='small' />
 											</IconButton>
 										}
-										onClick={e=>handleUserClick(contact, e)}
+										onClick={e => handleUserClick(e, contact)}
 									>
 										<ListItemAvatar>
 											<Avatar sx={{ width: '20px', height: '20px' }}>
-												<img src={contact.photo} alt='member' width={20} height='fit-content'/>
+												<img src={contact.photo} alt='member' width={20} height='fit-content' />
 											</Avatar>
 										</ListItemAvatar>
 										<ListItemText primary={contact.firstname} sx={{

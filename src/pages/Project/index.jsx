@@ -1,14 +1,11 @@
 import { useSelector } from 'react-redux'
-import { TaskPageHeader, TasksPageContent } from '../../components'
-import { UserDrawer } from '../../layouts'
+import { TasksPageContent } from '../../components'
 import { ProjectPageWrapper } from './styled'
 
-const Project = ({isOpen,  setIsOpen,  setChatUsers}) => {
+const Project = () => {
   const { user, company, project } = useSelector(state => state)
   return (
     <ProjectPageWrapper>
-      <TaskPageHeader />
-      <UserDrawer isOpen={isOpen} setIsOpen={setIsOpen} setChatUsers={setChatUsers}/>
       <TasksPageContent projectId={ project.data.id} />
     </ProjectPageWrapper>
   )
